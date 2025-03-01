@@ -1,8 +1,8 @@
 import React from "react";
-import './App.css'
+import '../App.css'
 
 
-function Fg() {
+function Login() {
     return (
         <div className="container">
             <div className="login-box">
@@ -17,4 +17,4 @@ function Fg() {
     );
 }
 
-export default Fg;
+export default Login;
