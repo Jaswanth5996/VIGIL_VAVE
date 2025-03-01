@@ -1,18 +1,20 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
+  margin-top: 0px;
   padding: 2rem;
   text-align: center;
 }
-
+.des{
+  margin: 0.8em;
+}
 .logo {
-  height: 6em;
+  height: 13em;
   padding: 1.5em;
+  padding-top: 0em;
   will-change: filter;
   transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  border-radius: 35px;
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -39,4 +41,62 @@
 
 .read-the-docs {
   color: #888;
+}
+button{
+  font-size: x-large;
+border:2px solid black;
+background:blue;
+color: white;
+font-weight: 800;
+width: 300px;
+height: 70px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #f0f0f0;
+}
+
+.login-box {
+  background:blue;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+}
+
+.p {
+  border: 3px solid white;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.input-box {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid blue;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+.pp {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.pp div {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #000;
+  border-radius: 5px;
 }
