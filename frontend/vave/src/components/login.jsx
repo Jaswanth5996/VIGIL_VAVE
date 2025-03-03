@@ -8,7 +8,8 @@ function Login() {
     const schema = yup.object().shape({
         telephone: yup
             .string()
-            .length(10, "Phone number must be exactly 10 digits")
+            .matches(/^[0-9]+$/, "Phone number must consist only of digits (0-9)")
+            .length(10,"Phone must be exactly 10 digits")
             .required("Phone Number can't be empty"),
         otp: yup
             .string()
@@ -31,31 +32,24 @@ function Login() {
     return (
         <div className="container">
             <div className="login-box">
-                <div className="p">Login/register with Phone number</div>
+            <div className="p">Step 1 of 3</div>
+                <div className="p">Login/Register with Phone number</div>
                 <input
                     type="tel"
+                    placeholder="Enter your mobile number"
                     className="input-box"
                     {...register("telephone")}
                 />
                 <p className="error">{errors.telephone?.message}</p>
-
-                <button className="otp" onClick={handleSubmit(onSubmit)}>Send OTP</button>
-
-                <div >We have sent you a 4-digit OTP</div>
-
+                <button className="otp" >Send OTP</button>
                 <input
                     type="number"
+                    placeholder="Enter 4-digit OTP"
                     className="input-box"
                     {...register("otp")}
                 />
                 <p className="error">{errors.otp?.message}</p>
-
-                <div className="pp">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+                <button className="submit" onClick={handleSubmit(onSubmit)}>Submit</button>
             </div>
         </div>
     );
