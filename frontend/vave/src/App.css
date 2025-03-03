@@ -1,3 +1,7 @@
+*{
+ color: black;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -45,45 +49,53 @@
 button{
   font-size: x-large;
 border:2px solid black;
-background:blue;
+background:black;
 color: white;
 font-weight: 800;
 width: 300px;
 height: 70px;
 }
-
+.otp{
+  font-size: 15px;
+  width: 95%;
+height: 10%;
+}
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh; 
-  background-color: #f0f0f0;
+  align-items: center; 
+  background-color: white;
+  width: 400px;
 }
 
 .login-box {
-  background-color:blue;
+  background-color:white;
   color:white;
   padding: 20px;
+  border: 2px solid black;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
+  filter: drop-shadow(0 0 1em black);
 }
 
 .p {
-  border: 3px solid white;
+  border: 1px solid white;
+  border-radius: 6px;
   padding: 10px;
   margin: 10px 0;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
-  color: black;
+  color: white;
+  background-color: black;
 }
 
 .input-box {
-  width: 100%;
+  width: 90%;
   padding: 10px;
-  border: 2px solid blue;
+  border: 2px solid black;
   border-radius: 5px;
   margin-top: 10px;
 }

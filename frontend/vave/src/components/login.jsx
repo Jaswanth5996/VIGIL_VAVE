@@ -39,9 +39,9 @@ function Login() {
                 />
                 <p className="error">{errors.telephone?.message}</p>
 
-                <button onClick={handleSubmit(onSubmit)}>Send OTP</button>
+                <button className="otp" onClick={handleSubmit(onSubmit)}>Send OTP</button>
 
-                <div className="p">We have sent you a 4-digit OTP</div>
+                <div >We have sent you a 4-digit OTP</div>
 
                 <input
                     type="number"
