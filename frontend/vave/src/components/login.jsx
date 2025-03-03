@@ -1,26 +1,60 @@
-import React, { useState } from "react";
-import '../App.css'
-// import {} from '@hookform/resolvers/yup'
-// import * as yup from 'yup'
-// import {useForm} from 'react-hook-form'
+import React from "react";
+import "../App.css";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
 
 function Login() {
-    const [number,setNumber]=useState(0)
-    // // const schema = yup.object().shape({
-    // //     telephone : yup.number().max(10).min(10).required("Phone Number can't be empty"),
-    // //     otp: yup.number().integer().min(4).max(4).required("Enter a valid OTP"),
-    // // }
-    // )
+    const schema = yup.object().shape({
+        telephone: yup
+            .string()
+            .length(10, "Phone number must be exactly 10 digits")
+            .required("Phone Number can't be empty"),
+        otp: yup
+            .string()
+            .length(4, "OTP must be exactly 4 digits")
+            .required("Enter a valid OTP"),
+    });
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
+
+    const onSubmit = (data) => {
+        console.log("Submitted Data:", data);
+    };
+
     return (
         <div className="container">
             <div className="login-box">
                 <div className="p">Login/register with Phone number</div>
-                <button>Send OTP</button>
-                <input type="tel" required className="input-box" onChange={(e)=>  {setNumber(e.target.value); console.log(number)}}/>
+                <input
+                    type="tel"
+                    className="input-box"
+                    {...register("telephone")}
+                />
+                <p className="error">{errors.telephone?.message}</p>
+
+                <button onClick={handleSubmit(onSubmit)}>Send OTP</button>
+
                 <div className="p">We have sent you a 4-digit OTP</div>
-                {number}
+
+                <input
+                    type="number"
+                    className="input-box"
+                    {...register("otp")}
+                />
+                <p className="error">{errors.otp?.message}</p>
+
                 <div className="pp">
-                    <div></div><div></div><div></div><div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>
