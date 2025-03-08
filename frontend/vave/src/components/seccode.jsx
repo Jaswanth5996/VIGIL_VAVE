@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Secode = () => {
     const schema = yup.object().shape({
@@ -31,29 +32,37 @@ const Secode = () => {
     } = useForm({
         resolver: yupResolver(schema),
     });
-
+    const navigate= useNavigate()
     const [drop, setDrop] = useState(false);
     const [drop1, setDrop1] = useState(false);
     const [message, setMessage] = useState("");
-
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post("http://127.0.0.1:8000/detail", {
-                user: 1,  
-                contact1: data.mob1,
-                contact2: data.mob2,
-                contact3: data.mob3,
-                secret_code: data.secretcode,
-            });
+            const token = localStorage.getItem("token");
+    
+            const response = await axios.post(
+                "http://127.0.0.1:8000/detail/",
+                {
+                    contact1: data.mob1,
+                    contact2: data.mob2,
+                    contact3: data.mob3,
+                    secret_code: data.secretcode,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,  // ✅ Include token
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
     
             console.log("Data posted successfully:", response.data);
             setMessage("Data submitted successfully!");
+            navigate('/login/final');
             reset();
         } catch (error) {
-            console.error("Full error response:", error.response);
-            console.error("Error status:", error.response?.status);
-            console.error("Error data:", error.response?.data);
-            setMessage(`Failed to submit data: ${error.response?.status}`);
+            console.error("Full error response:", error.response?.data);
+            setMessage(`Failed to submit data: ${JSON.stringify(error.response?.data)}`);
         }
     };
     

@@ -1,9 +1,4 @@
-import axios from "axios"; 
-import { useState, useEffect } from "react";
-
 const Final = () => {
-
-
     return (
         <div className="container">
             <div className="login-box">

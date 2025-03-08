@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../App.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -12,7 +11,6 @@ function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // ✅ Validation Schema
     const schema = yup.object().shape({
         telephone: yup
             .string()
@@ -35,7 +33,6 @@ function Login() {
 
     const mobile = watch("telephone");
 
-    // ✅ Send OTP Request
     const sendOtp = async () => {
         if (!mobile || mobile.length !== 10) {
             setError("Please enter a valid 10-digit mobile number.");
@@ -46,7 +43,7 @@ function Login() {
             setLoading(true);
             const response = await axios.post("http://127.0.0.1:8000/send-otp/", { mobile });
             setOtpSent(true);
-            setValue("otp", ""); // Clear OTP field
+            setValue("otp", "");
             setError("");
         } catch (error) {
             setError("Failed to send OTP. Try again.");
@@ -55,19 +52,27 @@ function Login() {
         }
     };
 
-    // ✅ Verify OTP and Log in
     const onSubmit = async (data) => {
         try {
             setLoading(true);
+            setError("");
+    
             const response = await axios.post("http://127.0.0.1:8000/verify-otp/", {
                 mobile: data.telephone,
                 otp: data.otp,
             });
-
-            if (response.data.user_exists) {
-                navigate("/third"); // ✅ Redirect existing users
+    
+            if (response.data.access) {
+                localStorage.setItem("token", response.data.access);  // ✅ Store JWT token
+                localStorage.setItem("isAuthenticated", "true");
+    
+                if (response.data.is_new_user) {
+                    navigate("/login/addcode");  // ✅ Redirect new users to Step 2
+                } else {
+                    navigate("/profile");  // ✅ Redirect existing users to Profile
+                }
             } else {
-                navigate("/seccode"); // ✅ Redirect new users
+                setError("Failed to retrieve authentication token.");
             }
         } catch (error) {
             setError("Invalid OTP. Try again.");
@@ -75,6 +80,7 @@ function Login() {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="container">
