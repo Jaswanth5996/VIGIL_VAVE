@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-fu$+o^8=ieagfp=2v@2@9z243@80m%coops@*!dm-v%l(%@z%_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "api.CustomUser"
 # Application definition
@@ -96,17 +95,18 @@ WSGI_APPLICATION = 'vave.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+import os
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"), 
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT"),
+        "ENGINE": "django.db.backends.postgresql",  # ✅ Use PostgreSQL database
+        "NAME": os.getenv("DB_NAME", "vigil_vave"),  # ✅ Database name
+        "USER": os.getenv("DB_USER", "vigil_vave_user"),  # ✅ Database username
+        "PASSWORD": os.getenv("DB_PASSWORD", "pImoIibdibVzPTeyjgVmfrV8wvqBrZx2"),  # ❌ Avoid hardcoding passwords
+        "HOST": os.getenv("DB_HOST", "dpg-cv67ap56l47c73d5ee0g-a.oregon-postgres.render.com"),  # ✅ Database server
+        "PORT": os.getenv("DB_PORT", "5432"),  # ✅ PostgreSQL port (default: 5432)
     }
 }
-
 
 
 # Password validation
@@ -150,8 +150,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
+TWILIO_ACCOUNT_SID = "ACf0ad39db2957b30c6c61d87113e96329"
+TWILIO_AUTH_TOKEN = "40c437a1e30f144fea12b163c3506205"
+TWILIO_PHONE_NUMBER = "+16192688719" 
 
 

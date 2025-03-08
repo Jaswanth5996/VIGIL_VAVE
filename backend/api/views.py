@@ -41,7 +41,7 @@ class SendOTPView(APIView):
 
 
 class VerifyOTPView(APIView):
-    permission_classes = [AllowAny]  # ✅ Allow public access
+    permission_classes = [AllowAny]  
 
     def post(self, request):
         mobile = request.data.get("mobile")
@@ -54,27 +54,25 @@ class VerifyOTPView(APIView):
         if not user:
             return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
-        if user.otp is None:  # ✅ Handle case where OTP was not saved
-            return Response({"message": "No OTP found. Request a new one."}, status=status.HTTP_400_BAD_REQUEST)
-
-        if user.otp != otp:
+        if user.otp is None or user.otp != otp:
             return Response({"message": "Invalid OTP. Try again."}, status=status.HTTP_400_BAD_REQUEST)
 
         user.last_login = timezone.now()
-        user.otp = None  # ✅ Clear OTP after verification
+        user.otp = None  
         user.save()
 
-        has_details = Details.objects.filter(user=user).exists()
+        has_details = Details.objects.filter(user=user).exists()  # ✅ Check if details exist
 
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
 
         return Response({
             "message": "OTP verified successfully",
-            "has_details": has_details,
+            "has_details": has_details,  # ✅ Send this flag for redirection
             "access": access_token,
             "refresh": str(refresh),
         }, status=status.HTTP_200_OK)
+
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])  # ✅ Requires authentication
