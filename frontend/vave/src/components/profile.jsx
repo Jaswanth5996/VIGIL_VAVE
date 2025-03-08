@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import reactLogo from "../assets/vigilvave.png";
-import "../App.css"; // ✅ Import external CSS
+import styles from "../profile.module.css"; // ✅ Import module.css
 
 function Profile() {
     const navigate = useNavigate();
@@ -37,26 +37,26 @@ function Profile() {
         fetchProfile();
     }, [navigate]);
 
-    if (loading) return <div className="loading">Loading Profile...</div>;
-    if (error) return <div className="error-message">{error}</div>;
+    if (loading) return <div className={styles.loading}>Loading Profile...</div>;
+    if (error) return <div className={styles.errorMessage}>{error}</div>;
 
     return (
-        <div className="profile-container">
-            <img src={reactLogo} alt="Brand Logo" className="brand-logo" />
+        <div className={styles.profileContainer}>
+            <img src={reactLogo} alt="Brand Logo" className={styles.brandLogo} />
 
-            <div className="profile-card">
-                <h2 className="username">{user.username}</h2>
+            <div className={styles.profileCard}>
+                <h2 className={styles.username}>{user.username}</h2>
 
-                <div className="profile-info">
-                    <p className="info"><strong>📱 Mobile:</strong> {user.mobile}</p>
+                <div className={styles.profileInfo}>
+                    <p className={styles.info}>📱 <strong>Mobile:</strong> {user.mobile}</p>
 
-                    <h3 className="section-title">📞 Trusted Contacts</h3>
-                    <p className="info">{user.contact1}</p>
-                    <p className="info">{user.contact2}</p>
-                    <p className="info">{user.contact3}</p>
+                    <h3 className={styles.sectionTitle}>📞 Trusted Contacts</h3>
+                    <p className={styles.info}>{user.contact1}</p>
+                    <p className={styles.info}>{user.contact2}</p>
+                    <p className={styles.info}>{user.contact3}</p>
 
-                    <h3 className="section-title">🔑 Secret Code</h3>
-                    <p className="secret-code">{user.secret_code}</p>
+                    <h3 className={styles.sectionTitle}>🔑 Secret Code</h3>
+                    <p className={styles.secretCode}>{user.secret_code}</p>
                 </div>
 
                 <button
@@ -64,7 +64,7 @@ function Profile() {
                         localStorage.removeItem("token");
                         navigate("/login");
                     }}
-                    className="logout-button"
+                    className={styles.logoutButton}
                 >
                     Logout
                 </button>

@@ -1,0 +1,165 @@
+/* Profile.module.css */
+
+.profileContainer {
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    padding: 50px 20px;
+}
+
+/* 📌 Glassmorphism Profile Card */
+.profileCard {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    width: 420px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.profileCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 📌 Logo */
+.brandLogo {
+    width: 100px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.brandLogo:hover {
+    transform: scale(1.1);
+}
+
+/* 📌 Username */
+.username {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* 📌 Profile Info */
+.profileInfo {
+    margin-top: 20px;
+    text-align: left;
+    padding: 0 15px;
+}
+
+/* 📌 Info Sections */
+.info {
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease;
+}
+
+.info:hover {
+    transform: scale(1.03);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* 📌 Section Titles */
+.sectionTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f8f9fa;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* 📌 Secret Code */
+.secretCode {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ffd700;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.secretCode:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* 📌 Logout Button */
+.logoutButton {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.logoutButton:hover {
+    background: linear-gradient(135deg, #c0392b, #a83226);
+    transform: translateY(-3px);
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 768px) {
+    .profileCard {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .username {
+        font-size: 1.6rem;
+    }
+
+    .info, .secretCode {
+        font-size: 1rem;
+    }
+
+    .logoutButton {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profileCard {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .brandLogo {
+        width: 80px;
+    }
+
+    .username {
+        font-size: 1.4rem;
+    }
+
+    .info, .secretCode {
+        font-size: 0.9rem;
+    }
+
+    .logoutButton {
+        font-size: 0.85rem;
+    }
+}
