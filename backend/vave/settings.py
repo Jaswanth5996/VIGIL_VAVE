@@ -98,14 +98,15 @@ WSGI_APPLICATION = 'vave.wsgi.application'
 # }
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",  # ✅ Use PostgreSQL database
-        "NAME": os.getenv("DB_NAME", "vigil_vave"),  # ✅ Database name
-        "USER": os.getenv("DB_USER", "vigil_vave_user"),  # ✅ Database username
-        "PASSWORD": os.getenv("DB_PASSWORD", "pImoIibdibVzPTeyjgVmfrV8wvqBrZx2"),  # ❌ Avoid hardcoding passwords
-        "HOST": os.getenv("DB_HOST", "dpg-cv67ap56l47c73d5ee0g-a.oregon-postgres.render.com"),  # ✅ Database server
-        "PORT": os.getenv("DB_PORT", "5432"),  # ✅ PostgreSQL port (default: 5432)
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"), 
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
+
 
 
 # Password validation
