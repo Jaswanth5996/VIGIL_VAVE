@@ -63,6 +63,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://vigil-vave.vercel.app/",
 ]
 
 ROOT_URLCONF = 'vave.urls'
