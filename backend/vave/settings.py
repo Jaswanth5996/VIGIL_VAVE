@@ -64,7 +64,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://vigil-vave.vercel.app/",
+    "https://vigil-vave.vercel.app",
 ]
 
 ROOT_URLCONF = 'vave.urls'
@@ -158,9 +158,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
-
-# Debugging Twilio Authentication Issue
-print("Twilio Config Loaded:")
-print("TWILIO_ACCOUNT_SID:", TWILIO_ACCOUNT_SID)
-print("TWILIO_AUTH_TOKEN:", TWILIO_AUTH_TOKEN[:4] + "****")  # Masked for security
-print("TWILIO_PHONE_NUMBER:", TWILIO_PHONE_NUMBER)
