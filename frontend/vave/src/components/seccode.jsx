@@ -41,7 +41,7 @@ const Secode = () => {
             const token = localStorage.getItem("token");
     
             const response = await axios.post(
-                "http://vigil-vave.onrender.com/detail/",
+                "https://vigil-vave.onrender.com/detail/",
                 {
                     contact1: data.mob1,
                     contact2: data.mob2,

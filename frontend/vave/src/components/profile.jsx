@@ -21,7 +21,7 @@ function Profile() {
 
             try {
                 const headers = { Authorization: `Bearer ${token}` };
-                const response = await axios.get("http://vigil-vave.onrender.com/api/profile/", { headers });
+                const response = await axios.get("https://vigil-vave.onrender.com/api/profile/", { headers });
 
                 if (!response.data.has_details) {
                     console.warn("User has not completed profile, redirecting...");
