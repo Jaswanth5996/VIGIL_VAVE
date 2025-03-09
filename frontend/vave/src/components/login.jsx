@@ -57,7 +57,7 @@ function Login() {
             setLoading(true);
             setError("");
     
-            const response = await axios.post("http://vigil-vave.onrender.com/verify-otp/", {
+            const response = await axios.post("https://vigil-vave.onrender.com/verify-otp/", {
                 mobile: data.telephone,
                 otp: data.otp,
             });

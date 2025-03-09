@@ -155,8 +155,12 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID","ACf0ad39db2957b30c6c61d87113e96329")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN","40c437a1e30f144fea12b163c3506205")
-TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER","+16192688719") 
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
 
-
+# Debugging Twilio Authentication Issue
+print("Twilio Config Loaded:")
+print("TWILIO_ACCOUNT_SID:", TWILIO_ACCOUNT_SID)
+print("TWILIO_AUTH_TOKEN:", TWILIO_AUTH_TOKEN[:4] + "****")  # Masked for security
+print("TWILIO_PHONE_NUMBER:", TWILIO_PHONE_NUMBER)
