@@ -67,7 +67,7 @@ function Profile() {
                 <button
                     onClick={() => {
                         localStorage.removeItem("token");
-                        navigate("/login");
+                        navigate("/");
                     }}
                     className={styles.logoutButton}
                 >
