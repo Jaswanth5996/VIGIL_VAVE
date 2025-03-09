@@ -25,7 +25,7 @@ function Profile() {
 
                 if (!response.data.has_details) {
                     console.warn("User has not completed profile, redirecting...");
-                    navigate("/addcode");  // ✅ Redirect to details page
+                    navigate("/login/addcode");  // ✅ Redirect to details page
                     return;
                 }
 
