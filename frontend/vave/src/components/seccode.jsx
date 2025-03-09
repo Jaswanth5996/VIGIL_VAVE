@@ -41,7 +41,7 @@ const Secode = () => {
             const token = localStorage.getItem("token");
     
             const response = await axios.post(
-                "http://127.0.0.1:8000/detail/",
+                "http://vigil-vave.onrender.com/detail/",
                 {
                     contact1: data.mob1,
                     contact2: data.mob2,
@@ -58,7 +58,7 @@ const Secode = () => {
     
             console.log("Data posted successfully:", response.data);
             setMessage("Data submitted successfully!");
-            navigate('/login/final');
+            navigate('/profile');
             reset();
         } catch (error) {
             console.error("Full error response:", error.response?.data);

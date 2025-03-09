@@ -41,7 +41,7 @@ function Login() {
 
         try {
             setLoading(true);
-            const response = await axios.post("http://127.0.0.1:8000/send-otp/", { mobile });
+            const response = await axios.post("https://vigil-vave.onrender.com/send-otp/", { mobile });
             setOtpSent(true);
             setValue("otp", "");
             setError("");
@@ -57,20 +57,24 @@ function Login() {
             setLoading(true);
             setError("");
     
-            const response = await axios.post("http://127.0.0.1:8000/verify-otp/", {
+            const response = await axios.post("http://vigil-vave.onrender.com/verify-otp/", {
                 mobile: data.telephone,
                 otp: data.otp,
             });
     
+            console.log("API Response:", response.data);
+    
             if (response.data.access) {
-                localStorage.setItem("token", response.data.access);  // ✅ Store JWT token
+                localStorage.setItem("token", response.data.access);
                 localStorage.setItem("isAuthenticated", "true");
     
-                if (response.data.is_new_user) {
-                    navigate("/login/addcode");  // ✅ Redirect new users to Step 2
-                } else {
-                    navigate("/profile");  // ✅ Redirect existing users to Profile
-                }
+                setTimeout(() => {
+                    if (response.data.has_details) {
+                        navigate("/profile");  // ✅ Existing users go to profile
+                    } else {
+                        navigate("/login/addcode");  // ✅ New users go to details page
+                    }
+                }, 500);
             } else {
                 setError("Failed to retrieve authentication token.");
             }

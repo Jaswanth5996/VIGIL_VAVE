@@ -12,17 +12,22 @@ function Profile() {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            try {
-                const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token");
 
-                if (!token) {
-                    navigate("/login");
+            if (!token) {
+                navigate("/login");
+                return;
+            }
+
+            try {
+                const headers = { Authorization: `Bearer ${token}` };
+                const response = await axios.get("http://vigil-vave.onrender.com/api/profile/", { headers });
+
+                if (!response.data.has_details) {
+                    console.warn("User has not completed profile, redirecting...");
+                    navigate("/addcode");  // ✅ Redirect to details page
                     return;
                 }
-
-                const headers = { Authorization: `Bearer ${token}` };
-
-                const response = await axios.get("http://127.0.0.1:8000/api/profile/", { headers });
 
                 setUser(response.data);
             } catch (err) {
