@@ -80,16 +80,17 @@ def get_profile(request):
     user = request.user
     details = Details.objects.filter(user=user).first()
 
-    if not details:
-        return Response({"message": "Details not found"}, status=404)
+    # ✅ Ensure username follows the format "user_{mobile_number}"
+    formatted_username = f"user_{user.mobile}"
 
     return Response({
-        "username": user.username,
+        "username": formatted_username,  # ✅ Always return "user_{mobile_number}"
         "mobile": user.mobile,
-        "contact1": details.contact1,
-        "contact2": details.contact2,
-        "contact3": details.contact3,
-        "secret_code": details.secret_code,
+        "has_details": bool(details),  # ✅ Add this to indicate profile completeness
+        "contact1": details.contact1 if details else None,
+        "contact2": details.contact2 if details else None,
+        "contact3": details.contact3 if details else None,
+        "secret_code": details.secret_code if details else None,
     })
         
 class DetailsListCreateView(generics.ListCreateAPIView):
